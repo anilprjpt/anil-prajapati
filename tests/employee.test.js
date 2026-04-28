@@ -66,4 +66,16 @@ describe("Employee API - CRUD", () => {
     const res = await request(app).get(`/employees/${employeeId}`);
     expect(res.statusCode).toBe(200);
   });
+
+  // UPDATE
+  it("should update employee", async () => {
+    const res = await request(app).put(`/employees/${employeeId}`).send({
+      fullName: "Updated Name",
+      jobTitle: "Senior Developer",
+      country: "India",
+      salary: 70000,
+    });
+
+    expect(res.statusCode).toBe(200);
+  });
 });

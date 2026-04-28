@@ -24,3 +24,11 @@ exports.getEmployee = (req, res, next) => {
     next(err);
   }
 };
+
+exports.updateEmployee = (req, res, next) => {
+  try {
+    res.json(service.updateEmployee(req.params.id, req.body));
+  } catch (err) {
+    next(err);
+  }
+};

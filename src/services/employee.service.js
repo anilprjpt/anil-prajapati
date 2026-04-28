@@ -15,3 +15,7 @@ exports.getEmployeeById = (id) => {
   if (!employee) throw new Error("Employee not found");
   return employee;
 };
+
+exports.updateEmployee = (id, data) => {
+  return repo.update(id, data);
+};

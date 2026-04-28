@@ -23,3 +23,13 @@ exports.findAll = () => {
 exports.findById = (id) => {
   return db.prepare("SELECT * FROM employees WHERE id=?").get(id);
 };
+
+exports.update = (id, data) => {
+  db.prepare(`
+    UPDATE employees
+    SET fullName=?, jobTitle=?, country=?, salary=?
+    WHERE id=?
+  `).run(data.fullName, data.jobTitle, data.country, data.salary, id);
+
+  return exports.findById(id);
+};
