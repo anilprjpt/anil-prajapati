@@ -54,3 +54,36 @@ describe("Salary API", () => {
     expect(res.statusCode).toBe(400);
   });
 });
+
+describe("Salary Metrics API", () => {
+  beforeAll(() => {
+    db.prepare("DELETE FROM employees").run();
+
+    const insert = db.prepare(`
+      INSERT INTO employees (fullName, jobTitle, country, salary)
+      VALUES (?, ?, ?, ?)
+    `);
+
+    insert.run("A", "Developer", "India", 1000);
+    insert.run("B", "Developer", "India", 2000);
+    insert.run("C", "Manager", "India", 3000);
+    insert.run("D", "Developer", "USA", 4000);
+  });
+
+  // COUNTRY METRICS
+  it("should return min, max, avg salary by country", async () => {
+    const res = await request(app).get("/salary/metrics/country/India");
+
+    expect(res.statusCode).toBe(200);
+    expect(res.body.min).toBe(1000);
+    expect(res.body.max).toBe(3000);
+    expect(Math.round(res.body.avg)).toBe(2000);
+  });
+  
+  it("should handle no employees in country", async () => {
+    const res = await request(app).get("/salary/metrics/country/Japan");
+
+    expect(res.statusCode).toBe(200);
+    expect(res.body.min).toBe(null);
+  });
+});

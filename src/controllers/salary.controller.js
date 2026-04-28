@@ -11,3 +11,11 @@ exports.getSalary = (req, res, next) => {
     next(err);
   }
 };
+
+exports.getCountryMetrics = (req, res, next) => {
+  try {
+    res.json(salaryService.getCountryMetrics(req.params.country));
+  } catch (err) {
+    next(err);
+  }
+};

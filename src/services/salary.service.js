@@ -15,3 +15,14 @@ exports.calculateSalary = (employee) => {
     net: employee.salary - deduction
   };
 };
+
+exports.getCountryMetrics = (country) => {
+  return db.prepare(`
+    SELECT 
+      MIN(salary) as min,
+      MAX(salary) as max,
+      AVG(salary) as avg
+    FROM employees
+    WHERE country = ?
+  `).get(country);
+};
