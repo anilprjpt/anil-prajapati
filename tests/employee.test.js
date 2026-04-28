@@ -63,4 +63,12 @@ describe("Employee API - CRUD", () => {
 
     expect(res.statusCode).toBe(400);
   });
+
+  // READ ALL
+  it("should get all employees", async () => {
+    const res = await request(app).get("/employees");
+    expect(res.statusCode).toBe(200);
+  });
+  
 });
+

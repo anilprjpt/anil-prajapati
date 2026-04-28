@@ -15,3 +15,7 @@ exports.create = (employee) => {
 
   return { id: result.lastInsertRowid, ...employee };
 };
+
+exports.findAll = () => {
+  return db.prepare("SELECT * FROM employees").all();
+};

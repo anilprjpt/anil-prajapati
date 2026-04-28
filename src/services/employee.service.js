@@ -5,3 +5,7 @@ exports.createEmployee = (data) => {
   validateEmployee(data); 
   return repo.create(data);
 };
+
+exports.getAllEmployees = () => {
+  return repo.findAll();
+};
