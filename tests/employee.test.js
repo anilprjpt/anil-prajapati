@@ -78,4 +78,15 @@ describe("Employee API - CRUD", () => {
 
     expect(res.statusCode).toBe(200);
   });
+
+  // DELETE
+  it("should delete employee", async () => {
+    const res = await request(app).delete(`/employees/${employeeId}`);
+    expect(res.statusCode).toBe(204);
+  });
+
+  it("should return error for non-existing employee", async () => {
+    const res = await request(app).get(`/employees/${employeeId}`);
+    expect(res.statusCode).toBe(400);
+  });
 });

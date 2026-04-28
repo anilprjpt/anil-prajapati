@@ -32,3 +32,12 @@ exports.updateEmployee = (req, res, next) => {
     next(err);
   }
 };
+
+exports.deleteEmployee = (req, res, next) => {
+  try {
+    service.deleteEmployee(req.params.id);
+    res.status(204).send();
+  } catch (err) {
+    next(err);
+  }
+};

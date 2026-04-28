@@ -19,3 +19,7 @@ exports.getEmployeeById = (id) => {
 exports.updateEmployee = (id, data) => {
   return repo.update(id, data);
 };
+
+exports.deleteEmployee = (id) => {
+  return repo.delete(id);
+};
