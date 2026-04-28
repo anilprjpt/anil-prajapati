@@ -16,3 +16,11 @@ exports.getEmployees = (req, res, next) => {
     next(err);
   }
 };
+
+exports.getEmployee = (req, res, next) => {
+  try {
+    res.json(service.getEmployeeById(req.params.id));
+  } catch (err) {
+    next(err);
+  }
+};

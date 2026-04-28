@@ -9,3 +9,9 @@ exports.createEmployee = (data) => {
 exports.getAllEmployees = () => {
   return repo.findAll();
 };
+
+exports.getEmployeeById = (id) => {
+  const employee = repo.findById(id);
+  if (!employee) throw new Error("Employee not found");
+  return employee;
+};
