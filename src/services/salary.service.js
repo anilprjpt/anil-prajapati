@@ -26,3 +26,11 @@ exports.getCountryMetrics = (country) => {
     WHERE country = ?
   `).get(country);
 };
+
+exports.getJobTitleAvg = (jobTitle) => {
+  return db.prepare(`
+    SELECT AVG(salary) as avg
+    FROM employees
+    WHERE jobTitle = ?
+  `).get(jobTitle);
+};

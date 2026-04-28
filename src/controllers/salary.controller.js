@@ -19,3 +19,11 @@ exports.getCountryMetrics = (req, res, next) => {
     next(err);
   }
 };
+
+exports.getJobMetrics = (req, res, next) => {
+  try {
+    res.json(salaryService.getJobTitleAvg(req.params.jobTitle));
+  } catch (err) {
+    next(err);
+  }
+};

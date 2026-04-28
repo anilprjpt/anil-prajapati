@@ -79,6 +79,14 @@ describe("Salary Metrics API", () => {
     expect(res.body.max).toBe(3000);
     expect(Math.round(res.body.avg)).toBe(2000);
   });
+
+  // JOB TITLE AVG
+  it("should return average salary by job title", async () => {
+    const res = await request(app).get("/salary/metrics/job/Developer");
+
+    expect(res.statusCode).toBe(200);
+    expect(Math.round(res.body.avg)).toBe(2333);
+  });
   
   it("should handle no employees in country", async () => {
     const res = await request(app).get("/salary/metrics/country/Japan");
